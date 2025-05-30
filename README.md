@@ -46,3 +46,25 @@ $ git clone https://github.com/simplilearn10/SpringBootPrometheusGrafana.git
 $ cd SpringBootPrometheusGrafana/
 ```
 ![alt text](image-6.png)
+
+- **Run the following command to clean and build the Maven project**
+```bash
+$ mvn clean install
+```
+![alt text](image-7.png)
+![alt text](image-8.png)
+
+- **Run the Spring Boot application using the following command**
+```bash
+$ java -jar target/spring-boot-metrics-0.0.1-SNAPSHOT.jar
+```
+![alt text](image-9.png)
+
+- **Fetch data from the API using the following commands**
+```bash
+$ curl -XGET http://localhost:8089/api/books
+$ curl -XGET http://localhost:8089/api/books?title=Domain+Driven+Design
+$ curl -XGET http://localhost:8089/api/books?title=Clean+code
+$ curl -XGET http://localhost:8089/api/books?title=Fundamental+Algorithms
+```
+![alt text](image-10.png)
