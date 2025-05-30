@@ -1,6 +1,14 @@
 # Application Metrics Monitoring
 This repository holds the final project for a course on Application Metrics and Monitoring in a DevOps context. It demonstrates the practical implementation of key concepts, including application instrumentation, metrics collection (e.g., using Prometheus), data visualization (e.g., using Grafana), and setting up a basic monitoring pipeline to gain insights into application performance and health.
 
+## Prerequisites
+- A Linux-based operating system (e.g., Ubuntu)
+- Java Development Kit (JDK) 8 or higher
+- Maven
+- Git
+- curl
+- wget
+
 ## Step 1: Log in to the Linux terminal and install the Prometheus metric server
 
 - **Run the following commands to install Prometheus on the system**
