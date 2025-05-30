@@ -68,3 +68,87 @@ $ curl -XGET http://localhost:8089/api/books?title=Clean+code
 $ curl -XGET http://localhost:8089/api/books?title=Fundamental+Algorithms
 ```
 ![alt text](image-10.png)
+
+## Step 3: Configure Grafana visualization tool to visualize metrics
+- **Create a directory for storing APT keyrings**
+```bash
+$ sudo mkdir -p /etc/apt/keyrings/
+```
+![alt text](image-11.png)
+
+- **Run the following command to download the Grafana GPG key, dearmor it, and store it in the keyring directory**
+```bash
+$ wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
+```
+![alt text](image-12.png)
+
+- **Add a repository for stable releases**
+```bash
+$ echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
+![alt text](image-13.png)
+
+- **Run the following command to update the list of available packages**
+```bash
+$ sudo apt update
+```
+![alt text](image-14.png)
+
+- **Run the following command to install Grafana OSS**
+```bash
+$ sudo apt install grafana
+```
+![alt text](image-15.png)
+
+- **Start the Grafana service and check the status**
+```bash
+$ sudo systemctl start grafana-server 
+$ sudo systemctl status grafana-server 
+```
+![alt text](image-16.png)
+![alt text](image-17.png)
+
+- **Access the Grafana web interface using your server’s IP address
+http://your-server-ip:3000 [here it is http://localhost:3000]**
+![alt text](image-18.png)
+
+- **Log in to Grafana using the default credentials, then click Submit as shown below**
+```
+Username: admin
+Password: admin
+```
+![alt text](image-19.png)
+![alt text](image-20.png)
+
+- **Go to Data sources and select Prometheus as data source, as shown   
+in the screenshot below:**
+![alt text](image-21.png)
+![alt text](image-22.png)
+![alt text](image-23.png)
+
+## Step 4: Create a metrics dashboard for API responses
+- **Open the Grafana main menu, select Dashboard, and click 'Create dashboard'**
+![alt text](image-24.png)
+- **Click 'Add visualization'**
+![alt text](image-25.png)
+
+- **Select the Prometheus data source to proceed**
+![alt text](image-26.png)
+
+- **Add a Gauge panel using the metric books_service_books_in_store_count to represent the number of books available in stock**
+![alt text](image-27.png)
+
+- **Use the metric books_service_api_books_get_count_total to track total API requests. Set the Legend field to {{title}} for clarity**
+![alt text](image-28.png)
+
+- **Enter the following query to measure the average response time for book searches and set the Legend field to {{title}}. Then, click Save**
+
+![alt text](image-29.png)
+
+- **Below is the Grafana dashboard that visualizes API response data, including total API requests and average response time for book searches and This setup provides valuable insights into application performance and API usage.**
+
+![alt text](image-30.png)
+
+
+
+
